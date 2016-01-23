@@ -22,15 +22,18 @@ class Dispatcher {
     {
         $controller = "app\\controllers\\$this->controller";
 
-        if (file_exists($controller . '.php'))
+        if (file_exists(str_replace('\\', DIRECTORY_SEPARATOR, $controller) . '.php'))
         {
             $controller = new $controller();
             $action     = $this->action;
 
-            $controller->$action();
+            if (method_exists($controller, $action))
+                $controller->$action();
+            else
+                die("Vous devez créer la méthode $action dans la classe " . get_class($controller));
         }
         else
-            die('Le controlleur n\'existe pas !');
+            die('Le controller n\'existe pas. Vous devez créer le fichier ' .  str_replace('\\', DIRECTORY_SEPARATOR, $controller) . '.php');
     }
 
     public function toString()

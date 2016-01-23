@@ -7,7 +7,7 @@ class MainController extends AppController {
 
     public function index()
     {
-        echo 'LOL';
+        $this->requireAuth();
 
         $this->render('index');
     }

@@ -3,9 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Super Tennis</title>
+        <title>Super Tennis :: <?= $title_for_layout; ?></title>
+        <link rel="stylesheet" href="app/assets/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>PD</h1>
+        <nav class="navbar navbar-inverse" style="border-radius: 0;">
+            <div class="container">
+                <header class="navbar-header">
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-content" aria-expanded="false">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">Super Tennis</a>
+                </header>
+
+                <div id="nav-content" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="?controller=main">Accueil</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <?= $content_for_layout; ?>
+        </div>
+
+        <script src="app/assets/js/jquery.min.js"></script>
+        <script src="app/assets/js/bootstrap.min.js"></script>
     </body>
 </html>
