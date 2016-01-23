@@ -22,6 +22,13 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="?controller=main">Accueil</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php if (isset($_SESSION['Auth'])): ?>
+                            <li><a href="?controller=users&action=logout">Se déconnecter</a></li>
+                        <?php else: ?>
+                            <li><a href="?controller=users&action=login">Se connecter</a></li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
             </div>
         </nav>

@@ -11,15 +11,28 @@ class UsersController extends AppController {
         {
             $this->loadModel();
 
-            $this->Users->count([
+            $exist = $this->Users->count([
                 'where' => [
-                    'username' => 'LOL',
-                    'password' => md5('LOL')
+                    'username' => 'admin',
+                    'password' => md5('admin')
                 ]
             ]);
+
+            if ($exist)
+            {
+                $_SESSION['Auth'] = $_POST;
+
+                header('Location: ?controller=main');
+            }
         }
 
         $this->render('login', 'user');
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: ?controller=main');
     }
 
 }

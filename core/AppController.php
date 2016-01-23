@@ -35,6 +35,11 @@ class AppController {
             die("La vue n'existe pas. Vous devez créer le fichier $render");
     }
 
+    public function set($vars)
+    {
+        $this->vars = array_merge($this->vars, $vars);
+    }
+
     public function requireAuth()
     {
         if (!isset($_SESSION['Auth']))

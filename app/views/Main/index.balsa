@@ -1,1 +1,64 @@
-<h1>Hello World !</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Rand
+                <div class="btn-group btn-group-xs">
+                    <a href="?controller=main&rang=DESC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <a href="?controller=main&rang=ASC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </div>
+            </th>
+            <th>
+                Nom
+                <div class="btn-group btn-group-xs">
+                    <a href="?controller=main&nom=DESC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <a href="?controller=main&nom=ASC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </div>
+            </th>
+            <th>
+                Prenom
+                <div class="btn-group btn-group-xs">
+                    <a href="?controller=main&prenom=DESC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <a href="?controller=main&prenom=ASC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </div>
+            </th>
+            <th>
+                Pays
+                <div class="btn-group btn-group-xs">
+                    <a href="?controller=main&libelle=DESC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <a href="?controller=main&libelle=ASC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <?php foreach ($classement as $v): ?>
+
+        <tr>
+            <td><?= $v->rang; ?></td>
+            <td><?= $v->nom; ?></td>
+            <td><?= $v->prenom; ?></td>
+            <td><?= $v->libelle; ?></td>
+        </tr>
+
+        <?php endforeach; ?>
+
+    </tbody>
+</table>

@@ -28,7 +28,7 @@ class Dispatcher {
             $action     = $this->action;
 
             if (method_exists($controller, $action))
-                $controller->$action();
+                $controller->$action($this->params);
             else
                 die("Vous devez créer la méthode $action dans la classe " . get_class($controller));
         }

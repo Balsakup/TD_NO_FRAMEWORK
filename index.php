@@ -1,6 +1,5 @@
 <?php
 use \core\Autoloader;
-use \core\AppController;
 
 require 'core/Autoloader.php';
 
