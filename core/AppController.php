@@ -59,4 +59,12 @@ class AppController {
             die("Le model n'existe pas. Vous devez créer le fichier $modelFile");
     }
 
+    public function requestAction($controller, $action = 'index')
+    {
+        $controller = "\\app\\controllers\\$controller";
+        $controller = new $controller();
+
+        return $controller->$action();
+    }
+
 }

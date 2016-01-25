@@ -12,14 +12,15 @@ class MainController extends AppController {
         if (empty($order))
             $order = [ 'rang' => 'asc' ];
 
-        $classement = $this->Main->find([
+        $title_for_layout = 'Gestion des joueurs';
+        $classement       = $this->Main->find([
             'order'  => $order
         ], null, [
             'joueur' => [ 'idJoueur', 'id' ],
             'pays'   => [ 'codePays', 'code' ]
         ]);
 
-        $this->set(compact('classement'));
+        $this->set(compact('title_for_layout', 'classement'));
         $this->render('index');
     }
 

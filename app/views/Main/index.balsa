@@ -1,3 +1,10 @@
+<div class="page-header">
+    <h1>
+        <?= $title_for_layout; ?>
+        <a href="?controller=joueurs&action=add" class="btn btn-success">Ajouter un joueur</a>
+    </h1>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -45,6 +52,7 @@
                     </a>
                 </div>
             </th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -53,9 +61,17 @@
 
         <tr>
             <td><?= $v->rang; ?></td>
-            <td><?= $v->nom; ?></td>
+            <td><?= strtoupper($v->nom); ?></td>
             <td><?= $v->prenom; ?></td>
-            <td><?= $v->libelle; ?></td>
+            <td><?= ucfirst($v->libelle); ?></td>
+            <td>
+                <a href="?controller=joueurs&action=edit&id=<?= $v->id; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="Editer le joueur">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                <a href="?controller=joueurs&action=delete&id=<?= $v->id; ?>" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Supprimer le joueur" onclick="return confirm('Voulez-vous vraiment supprimer ce joueur ?')">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
         </tr>
 
         <?php endforeach; ?>

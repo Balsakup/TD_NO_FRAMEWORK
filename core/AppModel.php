@@ -10,7 +10,7 @@ class AppModel {
     {
         try
         {
-            $this->conn  = new \PDO('mysql:host=localhost;dbname=atp', 'root', '');
+            $this->conn  = new \PDO('mysql:host=localhost;dbname=atp', 'root', 'root');
             $this->table = strtolower(explode('\\', get_class($this))[2]);
         }
         catch (\PDOException $e)
