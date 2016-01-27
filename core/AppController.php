@@ -3,9 +3,17 @@ namespace core;
 
 session_start();
 
+use \core\helpers\Session;
+
 class AppController {
 
     private $vars = [];
+    protected $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
 
     public function render($view, $layout = 'default')
     {

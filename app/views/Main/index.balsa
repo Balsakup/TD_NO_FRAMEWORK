@@ -52,6 +52,17 @@
                     </a>
                 </div>
             </th>
+            <th>
+                Année
+                <div class="btn-group btn-group-xs">
+                    <a href="?controller=main&annee=DESC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <a href="?controller=main&annee=ASC" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-up"></span>
+                    </a>
+                </div>
+            </th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -64,6 +75,7 @@
             <td><?= strtoupper($v->nom); ?></td>
             <td><?= $v->prenom; ?></td>
             <td><?= ucfirst($v->libelle); ?></td>
+            <td><?= ucfirst($v->annee); ?></td>
             <td>
                 <a href="?controller=joueurs&action=edit&id=<?= $v->id; ?>" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="Editer le joueur">
                     <span class="glyphicon glyphicon-edit"></span>

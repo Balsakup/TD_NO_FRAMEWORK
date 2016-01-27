@@ -10,7 +10,7 @@ class AppModel {
     {
         try
         {
-            $this->conn  = new \PDO('mysql:host=localhost;dbname=atp', 'root', 'root');
+            $this->conn  = new \PDO('mysql:host=localhost;dbname=atp', 'root', '');
             $this->table = strtolower(explode('\\', get_class($this))[2]);
         }
         catch (\PDOException $e)
@@ -34,6 +34,23 @@ class AppModel {
         }
 
         return $this->conn->query("SELECT COUNT($field) FROM $this->table $cond")->fetchColumn();
+    }
+
+    public function max($conditions = [], $field = '*')
+    {
+        $cond  = '';
+
+        if (isset($conditions['where']))
+        {
+            $cond = [];
+
+            foreach ($conditions['where'] as $k => $v)
+                array_push($cond, "$k = '$v'");
+
+            $cond = ' WHERE ' . implode(' AND ', $cond);
+        }
+
+        return $this->conn->query("SELECT MAX($field) FROM $this->table $cond")->fetchColumn();
     }
 
     public function find($conditions = [], $fields = [], $join = [])
@@ -88,9 +105,39 @@ class AppModel {
         return $stmt->execute();
     }
 
+    public function update($data, $conditions = [])
+    {
+        $set  = '';
+        $cond = '';
+
+        if (!empty($data))
+        {
+            $set = [];
+
+            foreach ($data as $c => $v)
+                array_push($set, "$c = '$v'");
+
+            $set = 'SET ' . implode(', ', $set);
+        }
+        else
+            die('Erreur lors de l\'update. Vous devez préciser des données.');
+
+        if (isset($conditions['where']))
+        {
+            $cond = [];
+
+            foreach ($conditions['where'] as $k => $v)
+                array_push($cond, "$k = '$v'");
+
+            $cond = ' WHERE ' . implode(' AND ', $cond);
+        }
+
+        return $this->conn->query("UPDATE $this->table $set $cond");
+    }
+
     public function delete($column, $value)
     {
-        return $this->conn->query("DELETE FROM $this->table WHERE $column = $value");
+        return $this->conn->query("DELETE FROM $this->table WHERE $column = '$value'");
     }
 
     public function setTable($table)

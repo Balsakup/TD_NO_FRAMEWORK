@@ -34,7 +34,10 @@
         </nav>
 
         <div class="container">
-            <?= $content_for_layout; ?>
+            <?php
+                $this->session->getFlash();
+                echo $content_for_layout;
+            ?>
         </div>
 
         <script src="app/assets/js/jquery.min.js"></script>
