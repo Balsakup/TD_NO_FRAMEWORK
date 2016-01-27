@@ -79,6 +79,20 @@ class AppModel {
         return $this->conn->query("SELECT $fields FROM $this->table $j $cond $order")->fetchAll(\PDO::FETCH_OBJ);
     }
 
+    public function save($data)
+    {
+        $columns = implode(', ', array_keys($data));
+        $values  = "'" . implode("', '", array_values($data)) ."'";
+        $stmt    = $this->conn->prepare("INSERT INTO $this->table($columns) VALUES($values)");
+
+        return $stmt->execute();
+    }
+
+    public function delete($column, $value)
+    {
+        return $this->conn->query("DELETE FROM $this->table WHERE $column = $value");
+    }
+
     public function setTable($table)
     {
         $this->table = $table;
